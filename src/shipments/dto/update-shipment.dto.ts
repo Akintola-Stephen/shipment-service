@@ -1,5 +1,6 @@
+import { ShipmentStatus } from '@prisma/client';
 import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { ShipmentStatus } from 'generated/prisma';
+
 
 export class UpdateShipmentDto {
     @IsOptional()

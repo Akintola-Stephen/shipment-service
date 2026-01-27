@@ -1,11 +1,20 @@
+import { ShipmentStatus } from '@prisma/client';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { ShipmentStatus } from 'generated/prisma';
+
 
 
 export class CreateShipmentDto {
     @IsString()
     @IsNotEmpty()
     trackingCode: string;
+
+    @IsString()
+    @IsNotEmpty()
+    trackingNumber: string;
+
+    @IsString()
+    @IsNotEmpty()
+    carrier: string;
 
     @IsString()
     senderName: string;
