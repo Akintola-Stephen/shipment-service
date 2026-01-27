@@ -13,3 +13,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Shipment {
+  id             String         @id @default(uuid())
+  trackingNumber String         @unique
+  carrier        String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  trackingCode   String         @unique
+  senderName     String
+  receiverName   String
+  origin         String
+  destination    String
+  status         ShipmentStatus @default(PENDING)
+}
+
+enum ShipmentStatus {
+  PENDING
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+}
