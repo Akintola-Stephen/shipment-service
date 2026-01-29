@@ -16,15 +16,22 @@ export class ShipmentsService {
      */
     async registerShipment(payload: CreateShipmentDto): Promise<Shipment> {
         const shipmentData = {
-            ...payload,
-            trackingNumber: this.generateTrackingNumber(),
-            carrier: payload['carrier'] || 'DHL',
+            senderName: payload.senderName,
+            receiverName: payload.receiverName,
+            origin: payload.origin,
+            destination: payload.destination,
+            status: payload.status || 'PENDING',
+            carrier: payload.carrier ?? 'DHL',
+            trackingNumber: payload.trackingNumber ?? this.generateTrackingNumber(),
+            trackingCode: payload.trackingCode ?? this.generateTrackingNumber(),
         };
 
         return this.prisma.shipment.create({
             data: shipmentData,
         });
     }
+
+
 
     /**
      * Retrieve all shipments, ordered by creation date descending.

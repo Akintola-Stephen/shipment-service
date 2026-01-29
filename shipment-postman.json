@@ -1,0 +1,119 @@
+{
+  "info": {
+    "name": "Shipment Service API",
+    "_postman_id": "shipment-service-api",
+    "description": "Postman collection for the Shipment Service API built with NestJS and Prisma",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register Shipment",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trackingCode\": \"ABC123456\",\n  \"senderName\": \"John Doe\",\n  \"receiverName\": \"Jane Smith\",\n  \"origin\": \"Lagos\",\n  \"destination\": \"Abuja\",\n  \"status\": \"PENDING\",\n  \"carrier\": \"DHL\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/api/shipments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v1", "api", "shipments"]
+        },
+        "description": "Register a new shipment. `trackingNumber` is auto-generated."
+      },
+      "response": []
+    },
+    {
+      "name": "List All Shipments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/api/shipments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v1", "api", "shipments"]
+        },
+        "description": "Retrieve all shipments ordered by newest first."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Shipment by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/api/shipments/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v1", "api", "shipments", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-placeholder",
+              "description": "Replace with shipment UUID"
+            }
+          ]
+        },
+        "description": "Retrieve a single shipment by UUID."
+      },
+      "response": []
+    },
+    {
+      "name": "Update Shipment",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"destination\": \"Port Harcourt\",\n  \"status\": \"IN_TRANSIT\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/api/shipments/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v1", "api", "shipments", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-placeholder",
+              "description": "Replace with shipment UUID"
+            }
+          ]
+        },
+        "description": "Update fields of an existing shipment. Only include fields to update."
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Shipment",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/api/shipments/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["v1", "api", "shipments", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uuid-placeholder",
+              "description": "Replace with shipment UUID"
+            }
+          ]
+        },
+        "description": "Delete a shipment permanently by UUID."
+      },
+      "response": []
+    }
+  ]
+}
